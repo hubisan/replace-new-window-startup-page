@@ -24,7 +24,7 @@ To be able to install the extension locally you need one of the following Firefo
 2. Build the extension: `npm run build`.
 3. Open `about:addons` in Firefox.
 4. Click on the gear icon in the top-right corner.
-5. Click on "Install Add-on From File..." and select the generated `replace_new_window_startup_page-1.0.3.zip` file.
+5. Click on "Install Add-on From File..." and select the generated `replace_new_window_startup_page-1.0.4.zip` file.
 
 ## Usage
 

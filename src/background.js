@@ -10,7 +10,17 @@ const newTabIds = new Set();
 // Function to track initial tabs of a given window
 const trackWindowTabs = async (windowId) => {
     try {
-        const tabs = await browser.tabs.query({ windowId: windowId });
+        let tabs = await browser.tabs.query({ windowId: windowId });
+        
+        // Firefox might take more than a few milliseconds to create the initial tab for the first new window.
+        // If the window has no tabs yet, we wait a bit and try again (up to 10 times / 500ms).
+        let retries = 0;
+        while (tabs.length === 0 && retries < 10) {
+            await new Promise(resolve => setTimeout(resolve, 50));
+            tabs = await browser.tabs.query({ windowId: windowId });
+            retries++;
+        }
+
         for (const tab of tabs) {
             newTabIds.add(tab.id);
             // Remove the tab from the set after a short delay (e.g. 2 seconds)
@@ -25,9 +35,8 @@ const trackWindowTabs = async (windowId) => {
 };
 
 // Listen for new window creation instead of any new tab
-browser.windows.onCreated.addListener(async (window) => {
-    // A slight delay ensures the initial tabs of the window are fully generated
-    setTimeout(() => trackWindowTabs(window.id), 50);
+browser.windows.onCreated.addListener((window) => {
+    trackWindowTabs(window.id);
 });
 
 // Capture tabs that are already open when the background script starts up.

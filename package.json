@@ -1,6 +1,6 @@
 {
     "name": "replace-new-window-startup-page",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Replaces the new window startup page if it matches a specific URL.",
     "main": "src/background.js",
     "scripts": {

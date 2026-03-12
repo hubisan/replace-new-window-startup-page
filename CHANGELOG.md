@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-03-12
+
+### Fixed
+- Fixed an issue where the very first "New Window" (Ctrl+N) in a session was not intercepted correctly because Firefox sometimes takes longer than expected to fully initialize the initial tabs for a new blank window. Implemented a robust retry mechanism to ensure the initial tab is correctly captured and redirected.
+
 ## [1.0.3] - 2026-03-12
 
 ### Fixed
