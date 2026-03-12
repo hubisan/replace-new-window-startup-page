@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "Tab Redirector",
+    "version": "1.0",
+    "description": "Redirects a specific URL to another URL when a new window/tab is opened.",
+    "permissions": [
+        "tabs",
+        "storage",
+        "webNavigation"
+    ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "options_ui": {
+        "page": "options.html",
+        "browser_style": true
+    },
+    "icons": {
+        "48": "icon48.png",
+        "96": "icon96.png"
+    }
+}
