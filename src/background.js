@@ -7,24 +7,36 @@ let config = {
 // Track newly created tabs to only redirect on startup/new window
 const newTabIds = new Set();
 
+// Function to track initial tabs of a given window
+const trackWindowTabs = async (windowId) => {
+    try {
+        const tabs = await browser.tabs.query({ windowId: windowId });
+        for (const tab of tabs) {
+            newTabIds.add(tab.id);
+            // Remove the tab from the set after a short delay (e.g. 2 seconds)
+            // If a request happens after this, it's likely a manual navigation
+            setTimeout(() => {
+                newTabIds.delete(tab.id);
+            }, 2000);
+        }
+    } catch (e) {
+        console.error("Could not query tabs for window:", e);
+    }
+};
+
 // Listen for new window creation instead of any new tab
 browser.windows.onCreated.addListener(async (window) => {
     // A slight delay ensures the initial tabs of the window are fully generated
-    setTimeout(async () => {
-        try {
-            const tabs = await browser.tabs.query({ windowId: window.id });
-            for (const tab of tabs) {
-                newTabIds.add(tab.id);
-                // Remove the tab from the set after a short delay (e.g. 2 seconds)
-                // If a request happens after this, it's likely a manual navigation
-                setTimeout(() => {
-                    newTabIds.delete(tab.id);
-                }, 2000);
-            }
-        } catch (e) {
-            console.error("Could not query tabs for new window:", e);
-        }
-    }, 50);
+    setTimeout(() => trackWindowTabs(window.id), 50);
+});
+
+// Capture tabs that are already open when the background script starts up.
+// This handles the very first browser launch, as `windows.onCreated` may fire
+// before the extension is fully loaded or might not fire at all for the initial window.
+browser.windows.getAll().then(windows => {
+    for (const win of windows) {
+        trackWindowTabs(win.id);
+    }
 });
 
 // Load initial config

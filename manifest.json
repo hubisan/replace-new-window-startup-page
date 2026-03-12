@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Replace New Window Startup Page",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "author": "Daniel Hubmann",
     "homepage_url": "https://github.com/hubisan/replace-new-window-startup-page",
     "browser_specific_settings": {

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-03-12
+
+### Fixed
+- Fixed issue where the extension failed to intercept startup URLs when launching the Firefox browser for the very first time.
+
 ## [1.0.2] - 2026-03-12
 
 ### Fixed
