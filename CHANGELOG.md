@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-03-12
+
+### Added
+- Created and deployed a brand new, highly visible "Home Checkmark" extension icon.
+
+### Fixed
+- Fixed over-eager URL replacement: now only replaces URLs when a new window/tab is automatically created, not when manually typed.
+- Fixed `MISSING_DATA_COLLECTION_PERMISSIONS` lint warning in Firefox by explicitly declaring no data collection in `manifest.json`.
+
+## [1.0.0] - 2026-03-12
+
 ### Added
 - Added `package.json` with development scripts (`start`, `build`, `lint`, `debug`).
 - Added `.gitignore` and `README.md`.
@@ -25,5 +36,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed URL redirection not triggering by adding `<all_urls>` permission in `manifest.json`.
 - Fixed URL comparison logic by adding URL normalization to handle trailing slashes.
 - Improved redirection performance by using `webNavigation.onBeforeNavigate` instead of `webNavigation.onCommitted`.
+- Fixed over-eager URL replacement: now only replaces URLs when a new window/tab is automatically created, not when manually typed.
 
 ## 0.1.0

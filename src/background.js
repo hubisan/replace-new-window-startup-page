@@ -4,6 +4,19 @@ let config = {
     targetUrl: ""
 };
 
+// Track newly created tabs to only redirect on startup/new window
+const newTabIds = new Set();
+
+// Listen for new tab creation
+browser.tabs.onCreated.addListener((tab) => {
+    newTabIds.add(tab.id);
+    // Remove the tab from the set after a short delay (e.g. 2 seconds)
+    // If a request happens after this, it's likely a manual navigation
+    setTimeout(() => {
+        newTabIds.delete(tab.id);
+    }, 2000);
+});
+
 // Load initial config
 browser.storage.sync.get({ sourceUrl: "", targetUrl: "" }).then(res => {
     config.sourceUrl = res.sourceUrl;
@@ -37,11 +50,18 @@ browser.webRequest.onBeforeRequest.addListener(
         // If no source URL configured, do nothing
         if (!config.sourceUrl) return {};
 
+        // Only redirect if this is a newly created tab (like a new window startup)
+        // This prevents redirecting when the user manually types the URL later
+        if (!newTabIds.has(details.tabId)) return {};
+
         const detailsUrl = normalizeUrl(details.url);
         const configuredUrl = normalizeUrl(config.sourceUrl);
 
         // Compare the loaded URL with the configured source URL
         if (detailsUrl === configuredUrl) {
+            // Once redirected we can remove it so we don't accidentally redirect again
+            newTabIds.delete(details.tabId);
+            
             // Redirect the tab to the target URL (if empty, use about:blank)
             const redirect = config.targetUrl || "about:blank";
             return { redirectUrl: redirect };
