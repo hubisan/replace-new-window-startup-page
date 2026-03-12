@@ -13,7 +13,8 @@
     "permissions": [
         "tabs",
         "storage",
-        "webNavigation",
+        "webRequest",
+        "webRequestBlocking",
         "<all_urls>"
     ],
     "background": {
