@@ -1,0 +1,24 @@
+{
+    "name": "replace-new-window-startup-page",
+    "version": "1.0.0",
+    "description": "Replaces the new window startup page if it matches a specific URL.",
+    "main": "src/background.js",
+    "scripts": {
+        "start": "web-ext run",
+        "build": "web-ext build --ignore-files 'assets/images' 'package-lock.json' '.gitignore' 'README.md' 'CHANGELOG.md' 'LICENSE'",
+        "lint": "web-ext lint",
+        "debug": "web-ext run --verbose",
+        "clean": "rm -rf web-ext-artifacts"
+    },
+    "devDependencies": {
+        "web-ext": "^8.4.1"
+    },
+    "keywords": [
+        "firefox",
+        "addon",
+        "redirect",
+        "startup-page"
+    ],
+    "author": "Daniel Hubmann",
+    "license": "GPL-3.0"
+}
