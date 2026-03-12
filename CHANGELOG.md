@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-03-12
+
+### Fixed
+- Changed URL replacement logic from `tabs.onCreated` to `windows.onCreated`. The extension will now correctly only replace the startup URL when a completely **new window** is opened, and will ignore all newly opened tabs within an existing window.
+- Fixed issue where the extension would block the user from manually typing the startup URL in a newly opened blank tab.
+
 ## [1.0.1] - 2026-03-12
 
 ### Added

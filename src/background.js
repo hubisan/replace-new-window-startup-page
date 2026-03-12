@@ -7,14 +7,24 @@ let config = {
 // Track newly created tabs to only redirect on startup/new window
 const newTabIds = new Set();
 
-// Listen for new tab creation
-browser.tabs.onCreated.addListener((tab) => {
-    newTabIds.add(tab.id);
-    // Remove the tab from the set after a short delay (e.g. 2 seconds)
-    // If a request happens after this, it's likely a manual navigation
-    setTimeout(() => {
-        newTabIds.delete(tab.id);
-    }, 2000);
+// Listen for new window creation instead of any new tab
+browser.windows.onCreated.addListener(async (window) => {
+    // A slight delay ensures the initial tabs of the window are fully generated
+    setTimeout(async () => {
+        try {
+            const tabs = await browser.tabs.query({ windowId: window.id });
+            for (const tab of tabs) {
+                newTabIds.add(tab.id);
+                // Remove the tab from the set after a short delay (e.g. 2 seconds)
+                // If a request happens after this, it's likely a manual navigation
+                setTimeout(() => {
+                    newTabIds.delete(tab.id);
+                }, 2000);
+            }
+        } catch (e) {
+            console.error("Could not query tabs for new window:", e);
+        }
+    }, 50);
 });
 
 // Load initial config
