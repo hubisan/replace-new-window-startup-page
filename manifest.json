@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
-    "name": "Tab Redirector",
+    "name": "Replace New Window Startup Page",
     "version": "1.0",
-    "description": "Redirects a specific URL to another URL when a new window/tab is opened.",
+    "description": "Replaces the new window startup page if it matches a specific URL. This is useful when the IT department forces a specific URL as the new window startup page.",
     "permissions": [
         "tabs",
         "storage",
@@ -10,15 +10,15 @@
     ],
     "background": {
         "scripts": [
-            "background.js"
+            "src/background.js"
         ]
     },
     "options_ui": {
-        "page": "options.html",
+        "page": "src/options/options.html",
         "browser_style": true
     },
     "icons": {
-        "48": "icon48.png",
-        "96": "icon96.png"
+        "48": "assets/icons/icon48.png",
+        "96": "assets/icons/icon96.png"
     }
 }
