@@ -22,5 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Fixed options page visibility and functionality.
+- Fixed URL redirection not triggering by adding `<all_urls>` permission in `manifest.json`.
+- Fixed URL comparison logic by adding URL normalization to handle trailing slashes.
+- Improved redirection performance by using `webNavigation.onBeforeNavigate` instead of `webNavigation.onCommitted`.
 
 ## 0.1.0
