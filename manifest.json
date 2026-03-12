@@ -2,7 +2,9 @@
     "manifest_version": 2,
     "name": "Replace New Window Startup Page",
     "version": "1.0",
+    "author": "Hubisan",
     "description": "Replaces the new window startup page if it matches a specific URL. This is useful when the IT department forces a specific URL as the new window startup page.",
+    "homepage_url": "https://github.com/hubisan/replace-new-window-startup-page",
     "permissions": [
         "tabs",
         "storage",

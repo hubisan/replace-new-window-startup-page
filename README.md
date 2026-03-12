@@ -22,6 +22,11 @@ A Firefox extension that replaces the new window startup page if it matches a sp
     npm start
     ```
 
+To debug the extension with verbose output, use:
+```bash
+npm run debug
+```
+
 ## Usage
 
 1.  Go to the extension options.
