@@ -3,41 +3,32 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Tab Redirector Options</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-
-    label {
-      display: block;
-      margin-top: 10px;
-    }
-
-    input {
-      width: 100%;
-      padding: 5px;
-    }
-
-    button {
-      margin-top: 15px;
-      padding: 5px 10px;
-    }
-  </style>
+  <title>Replace New Window Startup Page - Settings</title>
+  <link rel="stylesheet" href="options.css" />
 </head>
 
 <body>
-  <h1>Tab Redirector Settings</h1>
-  <label>
-    Source URL (to be redirected):
-    <input type="text" id="source" placeholder="https://example.com" />
-  </label>
-  <label>
-    Target URL (redirect destination):
-    <input type="text" id="target" placeholder="https://other.com" />
-  </label>
-  <button id="save">Save</button>
+  <div class="container">
+    <h1>Settings</h1>
+
+    <div class="input-group">
+      <label for="source">Source URL (to be replaced):</label>
+      <input type="text" id="source" placeholder="https://example.com" />
+      <small>The URL that should trigger the redirect.</small>
+    </div>
+
+    <div class="input-group">
+      <label for="target">Target URL (redirect destination):</label>
+      <input type="text" id="target" placeholder="https://other.com" />
+      <small>Leave empty to redirect to <code>about:blank</code>.</small>
+    </div>
+
+    <div class="actions">
+      <button id="save" class="primary">Save Settings</button>
+    </div>
+
+    <div id="status" class="status"></div>
+  </div>
   <script src="options.js"></script>
 </body>
 
