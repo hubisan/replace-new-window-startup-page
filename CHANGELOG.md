@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-03-14
+
+### Changed
+
+- Replaced icon with a new one.
+
 ## [1.0.0] - 2026-03-12
 
 ### Added
+
 - Created and deployed a brand new, highly visible "Home Checkmark" extension icon.
 - Added `package.json` with development scripts (`start`, `build`, `lint`, `debug`).
 - Added `.gitignore` and `README.md`.
@@ -18,12 +25,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added GNU GPL-3.0 `LICENSE` file.
 
 ### Changed
+
 - Moved source files to `src` directory.
 - Restructured `options` page: moved to `src/options/`, separated CSS and JS.
 - Polished Options UI with modern styling and non-blocking status messages.
 - Updated `manifest.json` with new directory structure, `author`, and `homepage_url`.
 
 ### Fixed
+
 - Fixed URL redirection not triggering by adding `<all_urls>` permission in `manifest.json`.
 - Fixed URL comparison logic by adding URL normalization to handle trailing slashes.
 - Improved redirection performance by using `webNavigation.onBeforeNavigate` instead of `webNavigation.onCommitted`.
@@ -34,5 +43,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - The extension no longer blocks the user from manually typing the startup URL in a newly opened blank tab.
 - Fixed `MISSING_DATA_COLLECTION_PERMISSIONS` lint warning in Firefox by explicitly declaring no data collection in `manifest.json`.
 - Fixed options page visibility and functionality.
-
-## 0.1.0
